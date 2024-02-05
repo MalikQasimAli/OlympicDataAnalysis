@@ -1,0 +1,18 @@
+{
+	"name": "SQL_Script",
+	"properties": {
+		"description": "A SQL script to extract information.",
+		"content": {
+			"query": " select Country, COUNT (*) AS TotalAthletes\n from Athletes\n GROUP BY Country\n ORDER BY TotalAthletes DESC\n\n\n Select \n Team_Country,\n SUM(Gold) Total_Gold,\n SUM(Silver) Total_Silver,\n SUM(Bronze) Total_Bronze\n FROM Medals\n GROUP BY Team_Country\n ORDER BY Total_Gold DESC\n\n SELECT *\n FROM Medals\n ORDER BY Bronze DESC",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "OlympicDatabase",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

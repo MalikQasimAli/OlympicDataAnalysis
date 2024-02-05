@@ -1,0 +1,22 @@
+{
+	"name": "OlympicDatabase",
+	"properties": {
+		"Name": "OlympicDatabase",
+		"EntityType": "DATABASE",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"Properties": {
+			"IsSyMSCDMDatabase": true
+		},
+		"Source": {
+			"Provider": "ADLS",
+			"Location": "abfss://qasfilesystem@qasgen2.dfs.core.windows.net/OlympicDatabase",
+			"Properties": {
+				"FormatType": "csv",
+				"LinkedServiceName": "synaps2024-WorkspaceDefaultStorage"
+			}
+		}
+	},
+	"type": "DATABASE"
+}

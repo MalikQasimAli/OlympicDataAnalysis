@@ -84,6 +84,27 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL_Script')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"description": "A SQL script to extract information.",
+				"content": {
+					"query": " select Country, COUNT (*) AS TotalAthletes\n from Athletes\n GROUP BY Country\n ORDER BY TotalAthletes DESC\n\n\n Select \n Team_Country,\n SUM(Gold) Total_Gold,\n SUM(Silver) Total_Silver,\n SUM(Bronze) Total_Bronze\n FROM Medals\n GROUP BY Team_Country\n ORDER BY Total_Gold DESC\n\n SELECT *\n FROM Medals\n ORDER BY Bronze DESC",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "OlympicDatabase",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/OlympicDatabase')]",
 			"type": "Microsoft.Synapse/workspaces/databases",
 			"apiVersion": "2019-06-01-preview",
@@ -140,8 +161,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Country",
@@ -153,8 +173,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Discipline",
@@ -166,8 +185,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									}
 								],
 								"Format": {
@@ -178,8 +196,8 @@
 									"Properties": {
 										"path": "abfss://qasfilesystem@qasgen2.dfs.core.windows.net/Athletes.csv",
 										"delimiter": ",",
-										"multiLine": "false",
 										"firstRowAsHeader": "true",
+										"multiLine": "false",
 										"serialization.format": "1",
 										"FormatTypeSetToDatabaseDefault": false,
 										"header": "true"
@@ -241,8 +259,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Country",
@@ -254,8 +271,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Discipline",
@@ -267,8 +283,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Event",
@@ -280,8 +295,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									}
 								],
 								"Format": {
@@ -292,8 +306,8 @@
 									"Properties": {
 										"path": "abfss://qasfilesystem@qasgen2.dfs.core.windows.net/Coaches.csv",
 										"delimiter": ",",
-										"multiLine": "false",
 										"firstRowAsHeader": "true",
+										"multiLine": "false",
 										"serialization.format": "1",
 										"FormatTypeSetToDatabaseDefault": false,
 										"header": "true"
@@ -355,8 +369,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Female",
@@ -367,8 +380,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Male",
@@ -379,8 +391,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Total",
@@ -391,8 +402,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									}
 								],
 								"Format": {
@@ -403,8 +413,8 @@
 									"Properties": {
 										"path": "abfss://qasfilesystem@qasgen2.dfs.core.windows.net/EntriesGender.csv",
 										"delimiter": ",",
-										"multiLine": "false",
 										"firstRowAsHeader": "true",
+										"multiLine": "false",
 										"serialization.format": "1",
 										"FormatTypeSetToDatabaseDefault": false,
 										"header": "true"
@@ -465,8 +475,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Team_Country",
@@ -478,8 +487,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Gold",
@@ -490,8 +498,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Silver",
@@ -502,8 +509,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Bronze",
@@ -514,8 +520,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Total",
@@ -526,8 +531,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Rank_by_Total",
@@ -538,8 +542,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "long"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									}
 								],
 								"Format": {
@@ -550,8 +553,8 @@
 									"Properties": {
 										"path": "abfss://qasfilesystem@qasgen2.dfs.core.windows.net/Medals.csv",
 										"delimiter": ",",
-										"multiLine": "false",
 										"firstRowAsHeader": "true",
+										"multiLine": "false",
 										"serialization.format": "1",
 										"FormatTypeSetToDatabaseDefault": false,
 										"header": "true"
@@ -613,8 +616,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Discipline",
@@ -626,8 +628,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Country",
@@ -639,8 +640,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									},
 									{
 										"Name": "Event",
@@ -652,8 +652,7 @@
 											"Properties": {
 												"HIVE_TYPE_STRING": "string"
 											}
-										},
-										"DeltaFormatInvalidMessages": []
+										}
 									}
 								],
 								"Format": {
@@ -664,8 +663,8 @@
 									"Properties": {
 										"path": "abfss://qasfilesystem@qasgen2.dfs.core.windows.net/Teams.csv",
 										"delimiter": ",",
-										"multiLine": "false",
 										"firstRowAsHeader": "true",
+										"multiLine": "false",
 										"serialization.format": "1",
 										"FormatTypeSetToDatabaseDefault": false,
 										"header": "true"
